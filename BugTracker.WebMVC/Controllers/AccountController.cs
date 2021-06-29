@@ -26,7 +26,7 @@ namespace BugTracker.WebMVC.Controllers
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -38,9 +38,9 @@ namespace BugTracker.WebMVC.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -54,7 +54,7 @@ namespace BugTracker.WebMVC.Controllers
             {
                 _userManager = value;
             }
-        } 
+        }
 
 
         //
@@ -125,7 +125,7 @@ namespace BugTracker.WebMVC.Controllers
             // If a user enters incorrect codes for a specified amount of time then the user account 
             // will be locked out for a specified amount of time. 
             // You can configure the account lockout settings in IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -160,8 +160,8 @@ namespace BugTracker.WebMVC.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
@@ -455,6 +455,43 @@ namespace BugTracker.WebMVC.Controllers
             };
             return View(userDetailModel);
         }
+
+        public ActionResult Edit(string userId)
+        {
+            ApplicationUser User = UserManager.FindById(userId);
+            var userEditModel = new UserEdit()
+            {
+                UserName = User.UserName,
+                Email = User.Email,
+                UserId = User.Id
+            };
+            return View(userEditModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(string userId, UserEdit model)
+        {
+            if (!ModelState.IsValid) return View(model);
+
+            if(model.UserId != userId)
+            {
+                ModelState.AddModelError("", "Id MisMatch");
+                return View(model);
+            }
+
+            ApplicationUser User = UserManager.FindById(userId);
+            User.UserName = model.UserName;
+
+            if (UserManager.Update(User).Succeeded)
+            {
+                return RedirectToAction("Index");
+            }
+
+            ModelState.AddModelError("", "User could not be updated.");
+            return View(model);
+        }
+
 
         #region Helpers
         // Used for XSRF protection when adding external logins

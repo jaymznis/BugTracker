@@ -58,6 +58,7 @@
     <Compile Include="TicketModels\TicketCreate.cs" />
     <Compile Include="TicketModels\TicketListItem.cs" />
     <Compile Include="UserModels\UserDetail.cs" />
+    <Compile Include="UserModels\UserEdit.cs" />
     <Compile Include="UserModels\UserListItem.cs" />
   </ItemGroup>
   <ItemGroup>
