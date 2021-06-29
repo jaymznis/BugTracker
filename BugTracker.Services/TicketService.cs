@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using Microsoft.AspNet.Identity;
 
 namespace BugTracker.Services.TicketModels
 {
@@ -26,10 +27,8 @@ namespace BugTracker.Services.TicketModels
                     CreatorId = _userId,
                     Name = model.Name,
                     Content = model.Content,
-                    CreatedUtc = DateTimeOffset.Now,
-                    CreatedBy = HttpContext.Current.GetOwinContext()
-    .GetUserManager<ApplicationUserManager>().FindById(_userId).UserName;
-        };
+                    CreatedUtc = DateTimeOffset.Now
+                };
             using (var ctx = new ApplicationDbContext())
             {
                 ctx.Tickets.Add(entity);

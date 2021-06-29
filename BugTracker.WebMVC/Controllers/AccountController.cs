@@ -9,6 +9,10 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using BugTracker.WebMVC.Models;
+using BugTracker.Data;
+using BugTracker.Services;
+using BugTracker.Models;
+using BugTracker.Models.UserModels;
 
 namespace BugTracker.WebMVC.Controllers
 {
@@ -50,7 +54,8 @@ namespace BugTracker.WebMVC.Controllers
             {
                 _userManager = value;
             }
-        }
+        } 
+
 
         //
         // GET: /Account/Login
@@ -421,6 +426,34 @@ namespace BugTracker.WebMVC.Controllers
             }
 
             base.Dispose(disposing);
+        }
+        public ActionResult Index()
+        {
+            var userService = new UserService();
+            var users = userService.GetAllUsers();
+
+            var userList = users.Select(u =>
+            {
+                return new UserListItem()
+                {
+                    UserId = u.Id,
+                    UserName = u.UserName,
+                    Email = u.Email
+                };
+            }).ToList();
+            return View(userList);
+        }
+
+        public ActionResult Details(string userId)
+        {
+            ApplicationUser User = UserManager.FindById(userId);
+            var userDetailModel = new UserDetail()
+            {
+                UserName = User.UserName,
+                Email = User.Email,
+                UserId = User.Id
+            };
+            return View(userDetailModel);
         }
 
         #region Helpers
