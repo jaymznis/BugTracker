@@ -22,6 +22,8 @@ namespace BugTracker.Data.Entities
         [Required]
         public DateTimeOffset CreatedUtc { get; set; }
 
+        public DateTimeOffset? ModifiedUtc { get; set; }
+
         public DateTimeOffset? CompletedUtc { get; set; }
 
         [Required]
@@ -31,5 +33,8 @@ namespace BugTracker.Data.Entities
 
         [DefaultValue(false)]
         public bool BeingAddressed { get; set; }
+
+        /*public IEnumerable<string> Editors { get; set; }*/
+
     }
 }

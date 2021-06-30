@@ -51,6 +51,7 @@ namespace BugTracker.Services.TicketModels
                         e =>
                         new TicketListItem
                         {
+                           Id = e.Id,
                            Name = e.Name,
                            CreatedUtc = e.CreatedUtc,
                            CreatedBy = e.CreatedBy,
@@ -73,6 +74,7 @@ namespace BugTracker.Services.TicketModels
                         e =>
                         new TicketListItem
                         {
+                            Id = e.Id,
                             Name = e.Name,
                             CreatedUtc = e.CreatedUtc,
                             CreatedBy = e.CreatedBy,
@@ -96,14 +98,80 @@ namespace BugTracker.Services.TicketModels
                     {
                        Id = entity.Id,
                        Name = entity.Name,
+                       Content = entity.Content,
                        CreatedUtc = entity.CreatedUtc,
+                       ModifiedUtc = entity.ModifiedUtc,
                        CompletedUtc = entity.CompletedUtc,
                        CreatedBy = entity.CreatedBy,
                        BeingAddressed = entity.BeingAddressed
                     };
             }
         }
+        public bool UserUpdateTicket(TicketEdit model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                    .Tickets
+                    .Single(e => e.Id == model.Id && e.CreatorId == _userId);
 
+                entity.Name = model.Name;
+                entity.Content = model.Content;
+                entity.ModifiedUtc = DateTimeOffset.UtcNow;
+             
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
+        public bool AdminUpdateTicket(TicketEditAdmin model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                    .Tickets
+                    .Single(e => e.Id == model.Id);
+
+                entity.Name = model.Name;
+                entity.Content = model.Content;
+                entity.ModifiedUtc = DateTimeOffset.UtcNow;
+
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
+        public bool UserDeleteTicket(int iD)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                   ctx
+                   .Tickets
+                   .Single(e => e.Id == iD && e.CreatorId == _userId);
+
+                ctx.Tickets.Remove(entity);
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
+        public bool AdminDeleteTicket(int iD)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                   ctx
+                   .Tickets
+                   .Single(e => e.Id == iD);
+
+                ctx.Tickets.Remove(entity);
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
 
     }
 }

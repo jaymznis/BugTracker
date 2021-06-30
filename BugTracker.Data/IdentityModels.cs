@@ -32,6 +32,7 @@ namespace BugTracker.Data
         {
             return new ApplicationDbContext();
         }
+
         public DbSet<Ticket> Tickets { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
