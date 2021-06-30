@@ -9,6 +9,7 @@ namespace BugTracker.Models.Ticket
 {
     public class TicketListItem
     {
+        public int Id { get; set; }
         public string Name { get; set; }
 
         [Display(Name="Created")]

@@ -433,15 +433,15 @@ namespace BugTracker.WebMVC.Controllers
             var userService = new UserService();
             var users = userService.GetAllUsers();
 
-            /*using(var ctx = new ApplicationDbContext())
+            /*using (var ctx = new ApplicationDbContext())
             {
                 ctx.Roles.Add(new IdentityRole()
                 {
                     Name = "admin"
                 });
                 ctx.SaveChanges();
-            }*/
-
+            }
+*/
             var userList = users.Select(u =>
             {
                 return new UserListItem()
