@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Attachment.cs" />
     <Compile Include="Entities\Ticket.cs" />
     <Compile Include="IdentityModels.cs" />
     <Compile Include="Migrations\202106292029076_InitialCreate.cs" />
