@@ -137,7 +137,7 @@ namespace BugTracker.Services.TicketModels
                 entity.Name = model.Name;
                 entity.Content = model.Content;
                 entity.ModifiedUtc = DateTimeOffset.UtcNow;
-
+                entity.BeingAddressed = model.BeingAddressed;
 
                 return ctx.SaveChanges() == 1;
             }

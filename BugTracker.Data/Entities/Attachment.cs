@@ -14,6 +14,14 @@ namespace BugTracker.Data.Entities
         [Key]
         public int Id { get; set; }
 
+        [Required]
+        public Guid CreatorId { get; set; }
+
+        public string Attachedby { get; set; }
+
+        [Required]
+        public DateTimeOffset CreatedUtc { get; set; }
+
         [ForeignKey(nameof(Ticket))]
         public int TicketId { get; set; }
         public virtual Ticket Ticket { get; set; }

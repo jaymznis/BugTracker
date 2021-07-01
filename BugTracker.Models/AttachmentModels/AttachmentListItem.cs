@@ -14,6 +14,7 @@ namespace BugTracker.Models.AttachmentModels
         public int Id { get; set; }
 
         public int TicketId { get; set; }
+        public string TicketName { get; set; }
 
         [Required]
         public string URL { get; set; }
