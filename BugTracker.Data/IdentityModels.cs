@@ -35,6 +35,8 @@ namespace BugTracker.Data
 
         public DbSet<Ticket> Tickets { get; set; }
         public DbSet<Attachment> Attachments { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

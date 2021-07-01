@@ -247,10 +247,10 @@
     <Content Include="Views\Ticket\Index.cshtml" />
     <Content Include="Views\Ticket\Delete.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\DateTimeOffset.cshtml" />
-    <Content Include="Views\Attachment\Index.cshtml" />
-    <Content Include="Views\Attachment\Create.cshtml" />
-    <Content Include="Views\Attachment\Details.cshtml" />
-    <Content Include="Views\Attachment\Delete.cshtml" />
+    <Content Include="Views\Shared\Attachment\Create.cshtml" />
+    <Content Include="Views\Shared\Attachment\Delete.cshtml" />
+    <Content Include="Views\Shared\Attachment\Details.cshtml" />
+    <Content Include="Views\Shared\Attachment\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
