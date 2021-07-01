@@ -34,6 +34,8 @@ namespace BugTracker.Data.Entities
         [DefaultValue(false)]
         public bool BeingAddressed { get; set; }
 
+        public virtual IEnumerable<Attachment> Attachments { get; set; } = new List<Attachment>();
+
         /*public IEnumerable<string> Editors { get; set; }*/
 
     }
