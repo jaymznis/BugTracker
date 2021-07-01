@@ -11,6 +11,8 @@ namespace BugTracker.Models.CommentModels
     {
         public int Id { get; set; }
 
+        public int TicketId { get; set; }
+
         public string TicketName { get; set; }
 
         [Required]

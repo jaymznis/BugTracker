@@ -13,7 +13,7 @@ namespace BugTracker.Models.CommentModels
 
         [Required]
         [MinLength(2, ErrorMessage = "Please enter at least 2 characters.")]
-        [MaxLength(200, ErrorMessage = "There are too many characters in this field.")]
+        [MaxLength(500, ErrorMessage = "There are too many characters in this field.")]
         [Display(Name = "Comment")]
         public string Content { get; set; }
     }
