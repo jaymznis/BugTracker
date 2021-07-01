@@ -98,6 +98,21 @@ namespace BugTracker.Services
                 return ctx.SaveChanges() == 1;
             }
         }
+        public bool DeleteAttachment(int iD)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                   ctx
+                   .Attachments
+                   .Single(e => e.Id == iD && e.CreatorId == _userId);
+
+                ctx.Attachments.Remove(entity);
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
 
     }
 }

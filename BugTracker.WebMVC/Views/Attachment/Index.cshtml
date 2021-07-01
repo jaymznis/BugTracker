@@ -5,10 +5,12 @@
 }
 
 <h2>Index</h2>
+    <p>
+        @*@Html.ActionLink("Create New", "Create", Request.QueryString)*@
+        @Html.ActionLink("Back to Tickets", "../Ticket/Index") 
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+    </p>
+
 <table class="table">
     <tr>
         <th>

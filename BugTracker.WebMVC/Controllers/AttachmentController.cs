@@ -29,12 +29,12 @@ namespace BugTracker.WebMVC.Controllers
         }
         public ActionResult Create(int id)
         {
-            var entity =
+            var model =
                 new AttachmentCreate()
                 {
                     TicketId = id
                 };
-            return View(entity);
+            return View(model);
         }
 
         [HttpPost]
@@ -49,7 +49,7 @@ namespace BugTracker.WebMVC.Controllers
             if (service.CreateAttachment(model))
             {
                 TempData["SaveResult"] = "Your Ticket was created.";
-                return RedirectToAction("Index");
+                return RedirectToAction("../Ticket/Index");
             };
 
             ModelState.AddModelError("", "Ticket could not be created.");
@@ -57,11 +57,36 @@ namespace BugTracker.WebMVC.Controllers
             return View(model);
         }
 
-        private Guid UserId()
+        public ActionResult Details(int id)
         {
-            var userId = Guid.Parse(User.Identity.GetUserId());
-            return userId;
+            var svc = CreateAttachmentService();
+            var model = svc.GetAttachmentById(id);
 
+            return View(model);
         }
+
+        [ActionName("Delete")]
+        public ActionResult Delete(int id)
+        {
+            var svc = CreateAttachmentService();
+            var model = svc.GetAttachmentById(id);
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeletePost(int id)
+        {
+            var service = CreateAttachmentService();
+
+            service.DeleteAttachment(id);
+
+            TempData["SaveResult"] = "Your Ticket was deleted.";
+
+            return RedirectToAction("../Ticket/Index");
+        }
+
     }
 }
