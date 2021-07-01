@@ -21,6 +21,8 @@ namespace BugTracker.Data.Entities
         [Required]
         public DateTimeOffset CreatedUtc { get; set; }
 
+        public DateTimeOffset? ModifiedUtc { get; set; }
+
         [ForeignKey(nameof(Ticket))]
         public int TicketId { get; set; }
         public virtual Ticket Ticket { get; set; }

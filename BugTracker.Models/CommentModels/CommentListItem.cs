@@ -7,14 +7,15 @@ using System.Threading.Tasks;
 
 namespace BugTracker.Models.CommentModels
 {
-    public class CommentCreate
+    public class CommentListItem
     {
-        public int TicketId { get; set; }
+        public int Id { get; set; }
+
+        public string TicketName { get; set; }
 
         [Required]
-        [MinLength(2, ErrorMessage = "Please enter at least 2 characters.")]
-        [MaxLength(200, ErrorMessage = "There are too many characters in this field.")]
         [Display(Name = "Comment")]
         public string Content { get; set; }
+        public string Commentby { get; set; }
     }
 }
