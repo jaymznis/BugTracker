@@ -81,7 +81,7 @@ namespace BugTracker.WebMVC.Controllers
                 ModifiedUtc = DateTimeOffset.Now,
             };
             return View(model);*/
-        }
+        }   
        /* [Authorize(Roles = "admin")]*/
         [HttpPost]
         [ValidateAntiForgeryToken]

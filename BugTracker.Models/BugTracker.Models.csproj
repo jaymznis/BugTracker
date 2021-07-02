@@ -57,6 +57,10 @@
     <Compile Include="AttachmentModels\AttachmentCreate.cs" />
     <Compile Include="AttachmentModels\AttachmentDetails.cs" />
     <Compile Include="AttachmentModels\AttachmentListItem.cs" />
+    <Compile Include="CommentModels\CommentCreate.cs" />
+    <Compile Include="CommentModels\CommentDetails.cs" />
+    <Compile Include="CommentModels\CommentEdit.cs" />
+    <Compile Include="CommentModels\CommentListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TicketModels\TicketCreate.cs" />
     <Compile Include="TicketModels\TicketDetail.cs" />
@@ -70,12 +74,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BugTracker.Data\BugTracker.Data.csproj">
-      <Project>{697f7158-fd5b-4232-856f-7eb67034bf64}</Project>
-      <Name>BugTracker.Data</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
