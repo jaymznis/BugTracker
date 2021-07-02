@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\ArchiveTickets.cs" />
     <Compile Include="Entities\Attachment.cs" />
     <Compile Include="Entities\Comment.cs" />
     <Compile Include="Entities\Ticket.cs" />
