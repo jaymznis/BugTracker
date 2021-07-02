@@ -22,6 +22,6 @@ namespace BugTracker.Models.CommentModels
 
         public int TicketId { get; set; }
 
-        public virtual TicketListItem Ticket { get; set; }
+        public string TicketName { get; set; }
     }
 }

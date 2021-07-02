@@ -28,7 +28,7 @@ namespace BugTracker.Services
                     CreatorId = _userId,
                     Content = model.Content,
                     CreatedUtc = DateTimeOffset.Now,
-                    CommentBy = _currentUserName,
+                    Commentby = _currentUserName,
                     TicketId = model.TicketId
                 };
             using (var ctx = new ApplicationDbContext())
@@ -77,10 +77,7 @@ namespace BugTracker.Services
                         Commentby = entity.Commentby,
                         CreatedUtc = entity.CreatedUtc,
                         TicketId = entity.TicketId,
-                        Ticket = new TicketListItem
-                        {
-                            Name = entity.Ticket.Name
-                        }
+                        TicketName = entity.Ticket.Name
                     };
             }
         }
