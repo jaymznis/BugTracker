@@ -69,6 +69,8 @@ namespace BugTracker.WebMVC.Controllers
             var detail = svc.GetCommentById(id);
             var model = new CommentEdit
             {
+                Id = detail.Id,
+                TicketId = detail.TicketId,
                 Content = detail.Content,
                 ModifiedUtc = DateTimeOffset.Now
             };
@@ -93,10 +95,10 @@ namespace BugTracker.WebMVC.Controllers
             if (service.UserUpdateComment(model))
             {
                 TempData["SaveResult"] = "Your Comment was updated.";
-                return RedirectToAction("Index");
+                return RedirectToAction($"Details/{id}");
             }
 
-            ModelState.AddModelError("", "Your Comment could nor be updated");
+            ModelState.AddModelError("", "Your Comment could not be updated");
             return View(model);
         }
 

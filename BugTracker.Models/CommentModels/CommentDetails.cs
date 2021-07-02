@@ -20,6 +20,9 @@ namespace BugTracker.Models.CommentModels
         [Display(Name = "Posted")]
         public DateTimeOffset CreatedUtc { get; set; }
 
+        [Display(Name = "Last Edit")]
+        public DateTimeOffset? ModifiedUtc { get; set; }
+
         public int TicketId { get; set; }
 
         public string TicketName { get; set; }

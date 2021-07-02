@@ -53,10 +53,14 @@
                 @Html.DisplayFor(modelItem => item.BeingAddressed)
             </td>
             <td>
+                @Html.ActionLink("View Comments", "../Comment/Index", new { id = item.Id }) |
+                @Html.ActionLink("New Comment", "../Comment/Create", new { id = item.Id }) |
                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
                 @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Add Attachment", "../Attachment/Create", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id }) |
+                @Html.ActionLink("Attach", "../Attachment/Create", new { id = item.Id }) |
+                @Html.ActionLink("View Attachments", "../Attachment/Index", new { id = item.Id }) 
+
             </td>
         </tr>
     }

@@ -4,10 +4,10 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Comment Info</h2>
+<h2>Comment Details</h2>
 
 <div>
-    <h4>CommentDetails</h4>
+    <h4>Info</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -35,6 +35,14 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.ModifiedUtc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModifiedUtc)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.TicketId)
         </dt>
 
@@ -54,6 +62,5 @@
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to Ticket", "../Ticket/Detail", new { Ticketid = Model.TicketId }) |
-    @Html.ActionLink("Back to all Tickets", "../Ticket/Index")
+    @Html.ActionLink("Back to Tickets", "../Ticket/Index")
 </p>

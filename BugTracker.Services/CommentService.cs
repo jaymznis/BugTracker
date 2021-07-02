@@ -76,6 +76,7 @@ namespace BugTracker.Services
                         Content = entity.Content,
                         Commentby = entity.Commentby,
                         CreatedUtc = entity.CreatedUtc,
+                        ModifiedUtc = entity.ModifiedUtc,
                         TicketId = entity.TicketId,
                         TicketName = entity.Ticket.Name
                     };
