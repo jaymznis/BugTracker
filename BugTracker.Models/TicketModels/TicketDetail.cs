@@ -1,4 +1,5 @@
 ﻿using BugTracker.Data.Entities;
+using BugTracker.Models.CommentModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -33,7 +34,7 @@ namespace BugTracker.Models.TicketModels
 
         public bool BeingAddressed { get; set; }
 
-        public List<Comment> Comments { get; set; }
+        public List<CommentListItem> Comments { get; set; } = new List<CommentListItem>();
 
 
         /*public IEnumerable<string> Editors { get; set; }*/

@@ -1,5 +1,4 @@
 ﻿using BugTracker.Data;
-using BugTracker.Models.Ticket;
 using BugTracker.Models.TicketModels;
 using BugTracker.Services.TicketModels;
 using Microsoft.AspNet.Identity;

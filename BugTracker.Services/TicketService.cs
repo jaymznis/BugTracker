@@ -22,7 +22,7 @@ namespace BugTracker.Services.TicketModels
         {
             _userId = userId;
         }
-        
+
         public bool CreateTicket(TicketCreate model)
         {
             var entity =
@@ -52,11 +52,11 @@ namespace BugTracker.Services.TicketModels
                         e =>
                         new TicketListItem
                         {
-                           Id = e.Id,
-                           Name = e.Name,
-                           CreatedUtc = e.CreatedUtc,
-                           CreatedBy = e.CreatedBy,
-                           BeingAddressed = e.BeingAddressed
+                            Id = e.Id,
+                            Name = e.Name,
+                            CreatedUtc = e.CreatedUtc,
+                            CreatedBy = e.CreatedBy,
+                            BeingAddressed = e.BeingAddressed
                         }
                         );
                 return query.ToArray();
@@ -97,18 +97,21 @@ namespace BugTracker.Services.TicketModels
                 return
                     new TicketDetail
                     {
-                       Id = entity.Id,
-                       Name = entity.Name,
-                       Content = entity.Content,
-                       CreatedUtc = entity.CreatedUtc,
-                       ModifiedUtc = entity.ModifiedUtc,
-                       CompletedUtc = entity.CompletedUtc,
-                       CreatedBy = entity.CreatedBy,
-                       BeingAddressed = entity.BeingAddressed,
-                       Comments = entity.Comments
-                       .Select(e => new CommentListItem() 
-                       { Content = e.Content,
-                       Commentby = e.Commentby
+                        Id = entity.Id,
+                        Name = entity.Name,
+                        Content = entity.Content,
+                        CreatedUtc = entity.CreatedUtc,
+                        ModifiedUtc = entity.ModifiedUtc,
+                        CompletedUtc = entity.CompletedUtc,
+                        CreatedBy = entity.CreatedBy,
+                        BeingAddressed = entity.BeingAddressed,
+                        Comments = entity.Comments
+                        .Where(e=> entity.Id == e.TicketId)
+                       .Select(e => new CommentListItem()
+                       {
+                           /*TicketId = e.TicketId,*/
+                           Content = e.Content,
+                           Commentby = e.Commentby
                        }).ToList()
                     };
             }
@@ -125,7 +128,7 @@ namespace BugTracker.Services.TicketModels
                 entity.Name = model.Name;
                 entity.Content = model.Content;
                 entity.ModifiedUtc = DateTimeOffset.UtcNow;
-             
+
 
                 return ctx.SaveChanges() == 1;
             }
