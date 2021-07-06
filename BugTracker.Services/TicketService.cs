@@ -1,6 +1,5 @@
 ﻿using BugTracker.Data;
 using BugTracker.Data.Entities;
-using BugTracker.Models.Ticket;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +8,8 @@ using System.Threading.Tasks;
 using System.Web;
 using Microsoft.AspNet.Identity;
 using BugTracker.Models.TicketModels;
+using BugTracker.Models.CommentModels;
+
 
 namespace BugTracker.Services.TicketModels
 {
@@ -103,7 +104,12 @@ namespace BugTracker.Services.TicketModels
                        ModifiedUtc = entity.ModifiedUtc,
                        CompletedUtc = entity.CompletedUtc,
                        CreatedBy = entity.CreatedBy,
-                       BeingAddressed = entity.BeingAddressed
+                       BeingAddressed = entity.BeingAddressed,
+                       Comments = entity.Comments
+                       .Select(e => new CommentListItem() 
+                       { Content = e.Content,
+                       Commentby = e.Commentby
+                       }).ToList()
                     };
             }
         }
