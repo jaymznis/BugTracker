@@ -1,6 +1,6 @@
 ﻿using BugTracker.Data;
 using BugTracker.Models.TicketModels;
-using BugTracker.Services.TicketModels;
+using BugTracker.Services;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;

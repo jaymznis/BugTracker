@@ -69,35 +69,42 @@
     </dl>
 </div>
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Comments)
-        </th>
-        <th>
-           Posted By
-        </th>
-    </tr>
-
-    @foreach (var item in Model.Comments)
+    @if (Model.Comments.Count == 0)
+    {
+        @: No one has commented on this ticket
+    }
+    else
     {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Content)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Commentby)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.Comments)
+            </th>
+            <th>
+                Posted By
+            </th>
         </tr>
-    }
+
+        foreach (var item in Model.Comments)
+        {
+            @Html.HiddenFor(modelItem => item.Id)
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Content)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Commentby)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "../Comment/Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "../Comment/Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "../Comment/Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }}
 
 </table>
 <p>
- 
+
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Attachments", "../Attachment/Index", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")

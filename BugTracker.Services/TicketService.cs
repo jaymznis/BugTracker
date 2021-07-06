@@ -11,7 +11,7 @@ using BugTracker.Models.TicketModels;
 using BugTracker.Models.CommentModels;
 
 
-namespace BugTracker.Services.TicketModels
+namespace BugTracker.Services
 {
     public class TicketService
     {
@@ -109,7 +109,7 @@ namespace BugTracker.Services.TicketModels
                         .Where(e=> entity.Id == e.TicketId)
                        .Select(e => new CommentListItem()
                        {
-                           /*TicketId = e.TicketId,*/
+                           Id = e.Id,
                            Content = e.Content,
                            Commentby = e.Commentby
                        }).ToList()
