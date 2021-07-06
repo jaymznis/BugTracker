@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\ArchiveTickets.cs" />
     <Compile Include="Entities\Attachment.cs" />
     <Compile Include="Entities\Comment.cs" />
     <Compile Include="Entities\Ticket.cs" />
@@ -74,6 +75,10 @@
     <Compile Include="Migrations\202107021506480_comment.Designer.cs">
       <DependentUpon>202107021506480_comment.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202107061739139_commentlist.cs" />
+    <Compile Include="Migrations\202107061739139_commentlist.Designer.cs">
+      <DependentUpon>202107061739139_commentlist.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -93,6 +98,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202107021506480_comment.resx">
       <DependentUpon>202107021506480_comment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107061739139_commentlist.resx">
+      <DependentUpon>202107061739139_commentlist.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

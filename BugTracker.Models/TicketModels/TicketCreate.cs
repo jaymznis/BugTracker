@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BugTracker.Models.Ticket
+namespace BugTracker.Models.TicketModels
 {
     public class TicketCreate
     {
