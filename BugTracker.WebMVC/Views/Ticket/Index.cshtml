@@ -41,7 +41,7 @@
     {
         if (!item.BeingAddressed)
         {
-            <tr class="danger">
+            <tr class="warning">
                 <td>
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
@@ -52,7 +52,8 @@
                     @Html.DisplayFor(modelItem => item.CreatedBy)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.BeingAddressed)
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+
                 </td>
                 <td>
                     <div class="dropdown">
@@ -61,10 +62,10 @@
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                            <li><a href='@string.Format("https://localhost:44337/Ticket/Edit/{0}", item.Id)'>Edit</a></li>
-                            <li><a href='@string.Format("https://localhost:44337/Ticket/Details/{0}", item.Id)'>Details</a></li>
+                            <li><a href='@string.Format("https://localhost:44337/Ticket/Edit/{0}", item.Id)'><span class="glyphicon glyphicon-pencil" aria-hidden="true" title="Edit"></span></a></li>
+                            <li><a href='@string.Format("https://localhost:44337/Ticket/Details/{0}", item.Id)'><span class="glyphicon glyphicon-list" aria-hidden="true"title="Details"></span></a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href='@string.Format("https://localhost:44337/Ticket/Delete/{0}", item.Id)'>Delete</a></li>
+                            <li><a href='@string.Format("https://localhost:44337/Ticket/Delete/{0}", item.Id)'><span class="glyphicon glyphicon-trash" aria-hidden="true"title="Delete"></span></a></li>
                         </ul>
                     </div>
 
@@ -73,7 +74,7 @@
         }
         else
         {
-            <tr>
+            <tr class="info">
                 <td>
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
@@ -84,7 +85,8 @@
                     @Html.DisplayFor(modelItem => item.CreatedBy)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.BeingAddressed)
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                   @* @Html.DisplayFor(modelItem => item.BeingAddressed)*@
                 </td>
                 <td>
                     @* @Html.ActionLink("Comment", "../Comment/Create", new { id = item.Id }) |*@
@@ -99,10 +101,10 @@
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                            <li><a href='@string.Format("https://localhost:44337/Ticket/Edit/{0}", item.Id)'>Edit</a></li>
-                            <li><a href='@string.Format("https://localhost:44337/Ticket/Details/{0}", item.Id)'>Details</a></li>
+                            <li><a href='@string.Format("https://localhost:44337/Ticket/Edit/{0}", item.Id)'><span class="glyphicon glyphicon-pencil" aria-hidden="true" title="Edit"></span></a></li>
+                            <li><a href='@string.Format("https://localhost:44337/Ticket/Details/{0}", item.Id)'><span class="glyphicon glyphicon-list" aria-hidden="true" title="Details"></span></a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href='@string.Format("https://localhost:44337/Ticket/Delete/{0}", item.Id)'><i class="far fa-trash-can">Delete</i></a></li>
+                            <li><a href='@string.Format("https://localhost:44337/Ticket/Delete/{0}", item.Id)'><span class="glyphicon glyphicon-trash" aria-hidden="true" title="Delete"></span></a></li>
                         </ul>
                     </div>
                 </td>
