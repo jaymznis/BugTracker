@@ -490,7 +490,7 @@ namespace BugTracker.WebMVC.Controllers
 
             var UserRoles = UserManager.GetRoles(userId);
             bool UserIsAdmin = UserRoles.Any(r => r == "admin");
-
+            // here to 498 block user edit unless admin
             if (!currentRoles.Contains("admin"))
             {
                 ModelState.AddModelError("", "You do not have permissions.");

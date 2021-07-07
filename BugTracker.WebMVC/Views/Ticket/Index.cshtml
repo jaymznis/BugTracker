@@ -39,30 +39,57 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedUtc)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedBy)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BeingAddressed)
-            </td>
-            <td>
-                @Html.ActionLink("View Comments", "../Comment/Index", new { id = item.Id }) |
-                @Html.ActionLink("New Comment", "../Comment/Create", new { id = item.Id }) |
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id }) |
-                @Html.ActionLink("Attach", "../Attachment/Create", new { id = item.Id }) |
-                @Html.ActionLink("View Attachments", "../Attachment/Index", new { id = item.Id }) 
+        if (!item.BeingAddressed)
+        {
+            <tr class="danger">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedUtc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedBy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BeingAddressed)
+                </td>
+                <td>
+                   
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }) |
+                   
+                </td>
+            </tr>
+        }
+        else
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedUtc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedBy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BeingAddressed)
+                </td>
+                <td>
+                   @* @Html.ActionLink("Comment", "../Comment/Create", new { id = item.Id }) |*@
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }) |
+                 @*   @Html.ActionLink("Attach", "../Attachment/Create", new { id = item.Id }) |
+                    @Html.ActionLink("View Attachments", "../Attachment/Index", new { id = item.Id })*@
 
-            </td>
-        </tr>
+                </td>
+            </tr>
+        }
+    }
     }
 
 </table>
