@@ -80,7 +80,7 @@
 <table class="table">
     @if (Model.Comments.Count == 0)
     {
-       <h4 class="text-warning alert col-xs-pull-3">No Comments</h4>
+       <h4 class="text-warning alert ">No Comments</h4>
     }
     else
     {
@@ -88,7 +88,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Comments)
             </th>
-            <th>
+            <th class="hidden-sm hidden-xs">
                 Posted By
             </th>
         </tr>
@@ -100,7 +100,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Content)
                 </td>
-                <td>
+                <td  class="hidden-sm hidden-xs">
                     @Html.DisplayFor(modelItem => item.Commentby)
                 </td>
                 <td>
