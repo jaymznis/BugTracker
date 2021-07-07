@@ -1,7 +1,7 @@
 ﻿using BugTracker.Data;
 using BugTracker.Data.Entities;
 using BugTracker.Models.CommentModels;
-using BugTracker.Models.Ticket;
+using BugTracker.Models.TicketModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
