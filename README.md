@@ -8,11 +8,14 @@
 
 
 ## Technologies used
-*  Visual Studio 2019 Community
-*  C#
+
 *  Git Hub
-*  Trello [(VISIT)](https://trello.com/b/KSftAe0z/bugtracker)
-*  dbdiagram.io  [(VISIT)](https://dbdiagram.io/embed/60d4c7b0dd6a5971481e625d)
+*  C#, Html , CSS, BootStrap, .NET
+*  [Visual Studio 2019 Community](https://visualstudio.microsoft.com/downloads/)
+*  [BootSwatch](https://bootswatch.com/)
+*  [Trello](https://trello.com/b/KSftAe0z/bugtracker)
+*  [dbgiagram.io](https://dbdiagram.io/embed/60d4c7b0dd6a5971481e625d)
+
 
 # Bug Tracker Project Layout
 
