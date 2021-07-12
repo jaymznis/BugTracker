@@ -2,6 +2,8 @@
 using BugTracker.Data.Entities;
 using BugTracker.Models.CommentModels;
 using BugTracker.Models.TicketModels;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -113,6 +115,23 @@ namespace BugTracker.Services
 
                 return ctx.SaveChanges() == 1;
             }
+        }
+        public bool UserIsAdmin(string userid)
+        {
+
+            ApplicationDbContext context = new ApplicationDbContext();
+            var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+
+            var roles = UserManager.GetRoles(userid);
+
+            if (roles.Contains("admin"))
+            {
+
+                return true;
+            }
+            return false;
+
+
         }
 
     }

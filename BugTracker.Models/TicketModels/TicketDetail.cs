@@ -26,6 +26,10 @@ namespace BugTracker.Models.TicketModels
         [Display(Name = "Last Edit")]
         public DateTimeOffset? ModifiedUtc { get; set; }
 
+        public bool Complete { get; set; }
+
+        public string CompletedBy { get; set; }
+
         [Display(Name = "Time Completed")]
         public DateTimeOffset? CompletedUtc { get; set; }
 

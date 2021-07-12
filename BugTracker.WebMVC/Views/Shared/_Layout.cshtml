@@ -6,6 +6,7 @@
     <title>@ViewBag.Title - Bug Tracker</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @using Microsoft.AspNet.Identity;
 
 </head>
 <body>
@@ -19,8 +20,8 @@
                 </button>
                 @Html.ActionLink("Bug Tracker", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            @*@if (User.IsInRole("admin"))*@
             
+                      @*  @if (User.IsInRole("admin")) { *@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li>@Html.ActionLink("Home", "Index", "Home")</li>

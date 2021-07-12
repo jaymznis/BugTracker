@@ -5,11 +5,11 @@
 }
 
 <h2>Index</h2>
-    <p>
-        @*@Html.ActionLink("Create New", "Create", Request.QueryString)*@
-        @Html.ActionLink("Back to Tickets", "../Ticket/Index") 
+<p>
+    @*@Html.ActionLink("Create New", "Create", Request.QueryString)*@
+    @Html.ActionLink("Back to Tickets", "../Ticket/Index")
 
-    </p>
+</p>
 
 <table class="table">
     <tr>
@@ -25,22 +25,24 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.TicketId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TicketName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.URL)
-        </td>
-        <td>
-            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TicketId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TicketName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.URL)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
 
 </table>
+

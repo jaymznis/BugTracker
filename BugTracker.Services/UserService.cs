@@ -26,7 +26,7 @@ namespace BugTracker.Services
             }
         }
 
-        public bool DeleteUser(string userId)
+       /* public bool DeleteUser(string userId)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -40,6 +40,6 @@ namespace BugTracker.Services
                 return ctx.SaveChanges() == 1;
 
             }
-        }
+        }*/
     }
 }

@@ -7,18 +7,31 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace BugTracker.WebMVC.Controllers
 {
     [Authorize]
     public class TicketController : Controller
     {
+
         // GET: Ticket
         public ActionResult Index()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
             var service = new TicketService(userId);
             var model = service.GetMyTickets();
+            var model2 = service.GetAllTickets();
+
+            var admin = service.UserIsAdmin(userId.ToString());
+
+            if (admin)
+            {
+                return View(model2);
+            }
+
             return View(model);
         }
 
@@ -55,33 +68,37 @@ namespace BugTracker.WebMVC.Controllers
             return View(model);
         }
 
-        /*[Authorize(Roles = "admin")]*/
+
         public ActionResult Edit(int id)
         {
-         /*   if (User.IsInRole("admin"))
-            {*/
-                var svcA = CreateTicketService();
-                var detailA = svcA.GetTicketById(id);
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var svcA = CreateTicketService();
+            var detail = svcA.GetTicketById(id);
+            var admin = svcA.UserIsAdmin(userId.ToString());
+            if (admin)
+            {
                 var modelA = new TicketEditAdmin
                 {
-                    Name = detailA.Name,
-                    Content = detailA.Content,
+                    Name = detail.Name,
+                    Content = detail.Content,
                     ModifiedUtc = DateTimeOffset.Now,
-                    BeingAddressed = detailA.BeingAddressed
+                    BeingAddressed = detail.BeingAddressed,
+                    Complete = detail.Complete
                 };
                 return View(modelA);
-            
-           /* var svc = CreateTicketService();
-            var detail = svc.GetTicketById(id);
-            var model = new TicketEdit
+            }
+            else
             {
-                Name = detail.Name,
-                Content = detail.Content,
-                ModifiedUtc = DateTimeOffset.Now,
-            };
-            return View(model);*/
-        }   
-       /* [Authorize(Roles = "admin")]*/
+                var model = new TicketEdit
+                {
+                    Name = detail.Name,
+                    Content = detail.Content,
+                    ModifiedUtc = DateTimeOffset.Now,
+                };
+                return View(model);
+            }
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, TicketEditAdmin model)
@@ -98,61 +115,20 @@ namespace BugTracker.WebMVC.Controllers
 
             if (service.AdminUpdateTicket(model))
             {
-                TempData["SaveResult"] = "Your Ticket was updated.";
+                TempData["SaveResult"] = "Ticket was updated.";
                 return RedirectToAction("Index");
             }
 
-            ModelState.AddModelError("", "Your Ticket could nor be updated");
+            ModelState.AddModelError("", "Ticket could not be updated");
             return View(model);
-        }
-       /* public ActionResult UserEdit(int id)
-        {
-          
-            var svc = CreateTicketService();
-            var detail = svc.GetTicketById(id);
-            var model = new TicketEditAdmin
-            {
-                Name = detail.Name,
-                Content = detail.Content,
-                ModifiedUtc = DateTimeOffset.Now,
-            };
-            return View(model);
-        }
-       
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult UserEdit(int id, TicketEdit model)
-        {
-            if (!ModelState.IsValid) return View(model);
-
-            if (model.Id != id)
-            {
-                ModelState.AddModelError("", "Id Mismatch");
-                return View(model);
-            }
-
-            var service = CreateTicketService();
-
-            if (service.UserUpdateTicket(model))
-            {
-                TempData["SaveResult"] = "Your Ticket was updated.";
-                return RedirectToAction("Index");
-            }
-
-            ModelState.AddModelError("", "Your Ticket could nor be updated");
-            return View(model);
-        }*/
-        private TicketService CreateTicketService()
-        {
-            var userId = Guid.Parse(User.Identity.GetUserId());
-            var service = new TicketService(userId);
-            return service;
         }
         [ActionName("Delete")]
         public ActionResult Delete(int id)
         {
+            var userId = Guid.Parse(User.Identity.GetUserId());
             var svc = CreateTicketService();
             var model = svc.GetTicketById(id);
+            var admin = svc.UserIsAdmin(userId.ToString());
 
             return View(model);
         }
@@ -162,14 +138,33 @@ namespace BugTracker.WebMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeletePost(int id)
         {
+            var userId = Guid.Parse(User.Identity.GetUserId());
             var service = CreateTicketService();
+            var admin = service.UserIsAdmin(userId.ToString());
 
-            service.UserDeleteTicket(id);
+            if (admin)
+            {
+                service.AdminDeleteTicket(id);
 
-            TempData["SaveResult"] = "Your Ticket was deleted.";
+                TempData["SaveResult"] = "Ticket was deleted.";
 
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                service.UserDeleteTicket(id);
+
+                TempData["SaveResult"] = "Your Ticket was deleted.";
+
+                return RedirectToAction("Index");
+            }
         }
-
+    private TicketService CreateTicketService()
+    {
+        var userId = Guid.Parse(User.Identity.GetUserId());
+        var service = new TicketService(userId);
+        return service;
+    }
     }
 }
+

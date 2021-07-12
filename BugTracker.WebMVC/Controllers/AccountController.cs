@@ -433,7 +433,7 @@ namespace BugTracker.WebMVC.Controllers
             var userService = new UserService();
             var users = userService.GetAllUsers();
 
-            /*using (var ctx = new ApplicationDbContext())
+           /* using (var ctx = new ApplicationDbContext())
             {
                 ctx.Roles.Add(new IdentityRole()
                 {
@@ -532,7 +532,7 @@ namespace BugTracker.WebMVC.Controllers
             return View(model);
         }
 
-        [ActionName("Delete")]
+        /*[ActionName("Delete")]
         public ActionResult Delete(string userId)
         {
             ApplicationUser User = UserManager.FindById(userId);
@@ -547,11 +547,11 @@ namespace BugTracker.WebMVC.Controllers
             var userService = new UserService();
             userService.DeleteUser(userId);
 
-            TempData["SaveResult"] = "Your note was deleted.";
+            TempData["SaveResult"] = "User was deleted.";
 
             return RedirectToAction("Index");
 
-        }
+        }*/
 
 
         #region Helpers

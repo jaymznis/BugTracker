@@ -125,8 +125,14 @@
     }
 
 </table>
+
+<div class="input-group">
+    <input type="text" class="form-control" placeholder="Write A Comment" aria-describedby="basic-addon2">
+    <span class="input-group-addon" id="basic-addon2">Post</span>
+</div>
 <p>
     @Html.ActionLink("Comment", "../Comment/Create", new { id = Model.Id }) |
+    @Html.ActionLink("Add Attachment", "../Attachment/Create", new { id = Model.Id }) |
     @Html.ActionLink("Attachments", "../Attachment/Index", new { id = Model.Id }) |
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
