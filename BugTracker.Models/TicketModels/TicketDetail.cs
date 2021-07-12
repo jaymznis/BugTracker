@@ -38,6 +38,7 @@ namespace BugTracker.Models.TicketModels
 
         public bool BeingAddressed { get; set; }
 
+        public bool UserIsAdmin { get; set; }
         public List<CommentListItem> Comments { get; set; } = new List<CommentListItem>();
 
 

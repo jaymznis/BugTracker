@@ -68,15 +68,28 @@ namespace BugTracker.WebMVC.Controllers
             return View(model);
         }
 
+        public ActionResult UserEdit(int id)
+        {
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var svcA = CreateTicketService();
+            var detail = svcA.GetTicketById(id);
+           
+                var model = new TicketEdit
+                {
+                    Name = detail.Name,
+                    Content = detail.Content,
+                    ModifiedUtc = DateTimeOffset.Now,
+                };
+                return View(model);
+            
+        }
 
         public ActionResult Edit(int id)
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
             var svcA = CreateTicketService();
             var detail = svcA.GetTicketById(id);
-            var admin = svcA.UserIsAdmin(userId.ToString());
-            if (admin)
-            {
+            
                 var modelA = new TicketEditAdmin
                 {
                     Name = detail.Name,
@@ -86,17 +99,8 @@ namespace BugTracker.WebMVC.Controllers
                     Complete = detail.Complete
                 };
                 return View(modelA);
-            }
-            else
-            {
-                var model = new TicketEdit
-                {
-                    Name = detail.Name,
-                    Content = detail.Content,
-                    ModifiedUtc = DateTimeOffset.Now,
-                };
-                return View(model);
-            }
+            
+           
         }
 
         [HttpPost]
@@ -122,16 +126,52 @@ namespace BugTracker.WebMVC.Controllers
             ModelState.AddModelError("", "Ticket could not be updated");
             return View(model);
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Route("UserEdit/{id}")]
+        public ActionResult UserEdit(int id, TicketEdit model)
+        {
+            if (!ModelState.IsValid) return View(model);
+
+            if (model.Id != id)
+            {
+                ModelState.AddModelError("", "Id Mismatch");
+                return View(model);
+            }
+
+            var service = CreateTicketService();
+
+            if (service.UserUpdateTicket(model))
+            {
+                TempData["SaveResult"] = "Ticket was updated.";
+                return RedirectToAction("Index");
+            }
+
+            ModelState.AddModelError("", "Ticket could not be updated");
+            return View(model);
+        }
         [ActionName("Delete")]
         public ActionResult Delete(int id)
         {
-            var userId = Guid.Parse(User.Identity.GetUserId());
+          
             var svc = CreateTicketService();
             var model = svc.GetTicketById(id);
-            var admin = svc.UserIsAdmin(userId.ToString());
+            
 
             return View(model);
         }
+
+        /*[ActionName("UserDelete")]
+        public ActionResult UserDelete(int id)
+        {
+
+            var svc = CreateTicketService();
+            var model = svc.GetTicketById(id);
+
+
+            return View(model);
+        }*/
+
 
         [HttpPost]
         [ActionName("Delete")]
@@ -159,7 +199,24 @@ namespace BugTracker.WebMVC.Controllers
                 return RedirectToAction("Index");
             }
         }
-    private TicketService CreateTicketService()
+
+     /*   [HttpPost]
+        [ActionName("UserDelete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult UserDeletePost(int id)
+        {
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var service = CreateTicketService();
+           
+                service.UserDeleteTicket(id);
+
+                TempData["SaveResult"] = "Your Ticket was deleted.";
+
+                return RedirectToAction("Index");
+            
+        }*/
+
+        private TicketService CreateTicketService()
     {
         var userId = Guid.Parse(User.Identity.GetUserId());
         var service = new TicketService(userId);

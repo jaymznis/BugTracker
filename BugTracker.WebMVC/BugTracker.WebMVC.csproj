@@ -246,8 +246,7 @@
     <Content Include="Views\Account\Delete.cshtml" />
     <Content Include="Views\Account\Edit.cshtml" />
     <Content Include="Views\Account\Details.cshtml" />
-    <Content Include="Views\Ticket\Edit.cshtml" />
-    <Content Include="Views\Ticket\UserEdit.cshtml" />
+    <Content Include="Views\Ticket\OldUserEdit.cshtml" />
     <Content Include="Views\Ticket\Index.cshtml" />
     <Content Include="Views\Ticket\Delete.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\DateTimeOffset.cshtml" />
@@ -260,7 +259,6 @@
     <Content Include="Views\Comment\Delete.cshtml" />
     <Content Include="Views\Comment\Edit.cshtml" />
     <Content Include="Views\Comment\Details.cshtml" />
-    <Content Include="Views\Ticket\Details.cshtml" />
     <Content Include="webfonts\fa-brands-400.eot" />
     <Content Include="webfonts\fa-brands-400.ttf" />
     <Content Include="webfonts\fa-brands-400.woff" />
@@ -277,6 +275,10 @@
     <Content Include="Views\Attachment\Delete.cshtml" />
     <Content Include="Views\Attachment\Details.cshtml" />
     <Content Include="Views\Attachment\Index.cshtml" />
+    <Content Include="Views\Ticket\Edit.cshtml" />
+    <Content Include="Views\Ticket\Details.cshtml" />
+    <Content Include="Views\Ticket\UserEdit.cshtml" />
+    <Content Include="Views\Comment\AdminDelete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

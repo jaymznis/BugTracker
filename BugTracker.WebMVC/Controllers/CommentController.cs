@@ -111,6 +111,30 @@ namespace BugTracker.WebMVC.Controllers
             return View(model);
         }
 
+        [ActionName("AdminDelete")]
+        public ActionResult AdminDelete(int id)
+        {
+            var svc = CreateCommentService();
+            var model = svc.GetCommentById(id);
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ActionName("AdminDelete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult AdminDeletePost(int id)
+        {
+            var service = CreateCommentService();
+            var model = service.GetCommentById(id);
+            service.AdminDeleteComment(id);
+
+            TempData["SaveResult"] = "Your Comment was deleted.";
+
+            return RedirectToAction($"../Ticket/Details/{model.TicketId}");
+
+        }
+
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]

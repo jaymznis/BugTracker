@@ -102,6 +102,21 @@ namespace BugTracker.Services
             }
         }
 
+        public bool AdminDeleteComment(int iD)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                   ctx
+                   .Comments
+                   .Single(e => e.Id == iD);
+
+                ctx.Comments.Remove(entity);
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
         public bool DeleteComment(int iD)
         {
             using (var ctx = new ApplicationDbContext())

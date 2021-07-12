@@ -59,7 +59,9 @@ namespace BugTracker.Services
                             Name = e.Name,
                             CreatedUtc = e.CreatedUtc,
                             CreatedBy = e.CreatedBy,
-                            BeingAddressed = e.BeingAddressed
+                            BeingAddressed = e.BeingAddressed,
+                            Completed = e.Complete,
+                            UserIsAdmin = true
                         }
                         );
                 return query.ToArray();
@@ -82,7 +84,8 @@ namespace BugTracker.Services
                             Name = e.Name,
                             CreatedUtc = e.CreatedUtc,
                             CreatedBy = e.CreatedBy,
-                            BeingAddressed = e.BeingAddressed
+                            BeingAddressed = e.BeingAddressed,
+                            UserIsAdmin = false
                         }
                         );
                 return query.ToArray();
@@ -91,6 +94,7 @@ namespace BugTracker.Services
         }
         public TicketDetail GetTicketById(int id)
         {
+            bool isAdmin = UserIsAdmin(_userId.ToString());
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
@@ -110,6 +114,7 @@ namespace BugTracker.Services
                         Complete = entity.Complete,
                         CompletedBy = entity.CompletedBy,
                         CompletedUtc = entity.CompletedUtc,
+                        UserIsAdmin = isAdmin,
                         Comments = entity.Comments
                         .Where(e=> entity.Id == e.TicketId)
                        .Select(e => new CommentListItem()
