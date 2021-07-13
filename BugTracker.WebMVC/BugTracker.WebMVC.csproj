@@ -280,6 +280,7 @@
     <Content Include="Views\Ticket\UserEdit.cshtml" />
     <Content Include="Views\Comment\AdminDelete.cshtml" />
     <Content Include="Views\Attachment\AdminDelete.cshtml" />
+    <Content Include="Views\Shared\_CommentCreate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
