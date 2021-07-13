@@ -15,8 +15,8 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.URL)
-        </dd>
+            <div class="well col-lg-6"><p class="text-truncate">@Html.DisplayFor(model => model.URL)</p></div>
+</dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.Attachedby)
@@ -45,5 +45,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Back to Tickets", "../Ticket/Index")
+    @Html.ActionLink("Back to Ticket", "../Ticket/Details", new { id = Model.TicketId }) |
+    @Html.ActionLink("Tickets", "../Ticket/Index")
 </p>

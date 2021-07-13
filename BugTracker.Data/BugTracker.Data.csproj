@@ -79,6 +79,10 @@
     <Compile Include="Migrations\202107061739139_commentlist.Designer.cs">
       <DependentUpon>202107061739139_commentlist.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202107121731552_userroles.cs" />
+    <Compile Include="Migrations\202107121731552_userroles.Designer.cs">
+      <DependentUpon>202107121731552_userroles.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -101,6 +105,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202107061739139_commentlist.resx">
       <DependentUpon>202107061739139_commentlist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107121731552_userroles.resx">
+      <DependentUpon>202107121731552_userroles.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

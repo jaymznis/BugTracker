@@ -48,11 +48,12 @@ namespace BugTracker.WebMVC.Controllers
 
             if (service.CreateAttachment(model))
             {
-                TempData["SaveResult"] = "Your Ticket was created.";
-                return RedirectToAction("../Ticket/Index");
+                TempData["SaveResult"] = "Your Attachment was added.";
+                return RedirectToAction($"../Ticket/Details/{model.TicketId}");
+                
             };
 
-            ModelState.AddModelError("", "Ticket could not be created.");
+            ModelState.AddModelError("", "Could not attach.");
 
             return View(model);
         }
@@ -74,19 +75,49 @@ namespace BugTracker.WebMVC.Controllers
             return View(model);
         }
 
+        [ActionName("AdminDelete")]
+        public ActionResult AdminDelete(int id)
+        {
+            var svc = CreateAttachmentService();
+            var model = svc.GetAttachmentById(id);
+
+            return View(model);
+        }
+
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeletePost(int id)
         {
             var service = CreateAttachmentService();
-
+           
+            var model = service.GetAttachmentById(id);
+        
             service.DeleteAttachment(id);
 
-            TempData["SaveResult"] = "Your Ticket was deleted.";
+            TempData["SaveResult"] = "Your Attachment was deleted.";
 
-            return RedirectToAction("../Ticket/Index");
+                return RedirectToAction($"../Ticket/Details/{model.TicketId}");
+            
         }
+
+        [HttpPost]
+        [ActionName("AdminDelete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult AdminDeletePost(int id)
+        {
+            var service = CreateAttachmentService();
+
+            var model = service.GetAttachmentById(id);
+
+            service.AdminDeleteAttachment(id);
+
+            TempData["SaveResult"] = "Your Attachment was deleted.";
+
+            return RedirectToAction($"../Ticket/Details/{model.TicketId}");
+
+        }
+
 
     }
 }

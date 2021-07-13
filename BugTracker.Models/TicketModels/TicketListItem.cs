@@ -19,5 +19,9 @@ namespace BugTracker.Models.TicketModels
 
         public bool BeingAddressed { get; set; }
 
+        public bool Completed { get; set; }
+
+        public bool UserIsAdmin { get; set; }
+
     }
 }

@@ -22,6 +22,8 @@ namespace BugTracker.Models.AttachmentModels
 
         public virtual TicketListItem Ticket { get; set; }
 
+        public bool IsAdmin { get; set; }
+
 
     }
 }

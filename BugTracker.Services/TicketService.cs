@@ -9,15 +9,18 @@ using System.Web;
 using Microsoft.AspNet.Identity;
 using BugTracker.Models.TicketModels;
 using BugTracker.Models.CommentModels;
+using Microsoft.AspNet.Identity.EntityFramework;
 
-
-namespace BugTracker.Services.TicketModels
+namespace BugTracker.Services
 {
     public class TicketService
     {
         private readonly Guid _userId;
 
         private readonly string _currentUserName = HttpContext.Current.User.Identity.Name;
+
+       
+
         public TicketService(Guid userId)
         {
             _userId = userId;
@@ -56,7 +59,9 @@ namespace BugTracker.Services.TicketModels
                             Name = e.Name,
                             CreatedUtc = e.CreatedUtc,
                             CreatedBy = e.CreatedBy,
-                            BeingAddressed = e.BeingAddressed
+                            BeingAddressed = e.BeingAddressed,
+                            Completed = e.Complete,
+                            UserIsAdmin = true
                         }
                         );
                 return query.ToArray();
@@ -79,7 +84,8 @@ namespace BugTracker.Services.TicketModels
                             Name = e.Name,
                             CreatedUtc = e.CreatedUtc,
                             CreatedBy = e.CreatedBy,
-                            BeingAddressed = e.BeingAddressed
+                            BeingAddressed = e.BeingAddressed,
+                            UserIsAdmin = false
                         }
                         );
                 return query.ToArray();
@@ -88,6 +94,7 @@ namespace BugTracker.Services.TicketModels
         }
         public TicketDetail GetTicketById(int id)
         {
+            bool isAdmin = UserIsAdmin(_userId.ToString());
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
@@ -102,14 +109,17 @@ namespace BugTracker.Services.TicketModels
                         Content = entity.Content,
                         CreatedUtc = entity.CreatedUtc,
                         ModifiedUtc = entity.ModifiedUtc,
-                        CompletedUtc = entity.CompletedUtc,
                         CreatedBy = entity.CreatedBy,
                         BeingAddressed = entity.BeingAddressed,
+                        Complete = entity.Complete,
+                        CompletedBy = entity.CompletedBy,
+                        CompletedUtc = entity.CompletedUtc,
+                        UserIsAdmin = isAdmin,
                         Comments = entity.Comments
                         .Where(e=> entity.Id == e.TicketId)
                        .Select(e => new CommentListItem()
                        {
-                           /*TicketId = e.TicketId,*/
+                           Id = e.Id,
                            Content = e.Content,
                            Commentby = e.Commentby
                        }).ToList()
@@ -147,6 +157,12 @@ namespace BugTracker.Services.TicketModels
                 entity.Content = model.Content;
                 entity.ModifiedUtc = DateTimeOffset.UtcNow;
                 entity.BeingAddressed = model.BeingAddressed;
+                entity.Complete = model.Complete;
+                if (model.Complete) 
+                {
+                    entity.CompletedUtc = DateTimeOffset.UtcNow;
+                    entity.CompletedBy = _currentUserName;
+                }
 
                 return ctx.SaveChanges() == 1;
             }
@@ -180,6 +196,24 @@ namespace BugTracker.Services.TicketModels
 
                 return ctx.SaveChanges() == 1;
             }
+        }
+
+        public bool UserIsAdmin(string userid)
+        {
+            
+            ApplicationDbContext context = new ApplicationDbContext();
+            var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+
+            var roles = UserManager.GetRoles(userid);
+
+            if (roles.Contains("admin"))
+            {
+
+                return true;
+            }
+            return false;
+
+          
         }
 
     }

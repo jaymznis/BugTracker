@@ -47,7 +47,7 @@ namespace BugTracker.WebMVC.Controllers
             if (service.CreateComment(model))
             {
                 TempData["SaveResult"] = "Your Comment was created.";
-                return RedirectToAction("../Ticket/Index");
+                return RedirectToAction($"../Ticket/Details/{model.TicketId}");
             };
 
             ModelState.AddModelError("", "Comment could not be created.");
@@ -95,7 +95,7 @@ namespace BugTracker.WebMVC.Controllers
             if (service.UserUpdateComment(model))
             {
                 TempData["SaveResult"] = "Your Comment was updated.";
-                return RedirectToAction($"Details/{id}");
+                return RedirectToAction($"../Ticket/Details/{model.TicketId}");
             }
 
             ModelState.AddModelError("", "Your Comment could not be updated");
@@ -111,18 +111,43 @@ namespace BugTracker.WebMVC.Controllers
             return View(model);
         }
 
+        [ActionName("AdminDelete")]
+        public ActionResult AdminDelete(int id)
+        {
+            var svc = CreateCommentService();
+            var model = svc.GetCommentById(id);
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ActionName("AdminDelete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult AdminDeletePost(int id)
+        {
+            var service = CreateCommentService();
+            var model = service.GetCommentById(id);
+            service.AdminDeleteComment(id);
+
+            TempData["SaveResult"] = "Your Comment was deleted.";
+
+            return RedirectToAction($"../Ticket/Details/{model.TicketId}");
+
+        }
+
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeletePost(int id)
         {
             var service = CreateCommentService();
-
+            var model = service.GetCommentById(id);
             service.DeleteComment(id);
 
             TempData["SaveResult"] = "Your Comment was deleted.";
 
-            return RedirectToAction("../Ticket/Index");
+            return RedirectToAction($"../Ticket/Details/{model.TicketId}");
+
         }
     }
 }
