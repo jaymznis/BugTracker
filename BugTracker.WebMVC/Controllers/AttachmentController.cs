@@ -75,6 +75,15 @@ namespace BugTracker.WebMVC.Controllers
             return View(model);
         }
 
+        [ActionName("AdminDelete")]
+        public ActionResult AdminDelete(int id)
+        {
+            var svc = CreateAttachmentService();
+            var model = svc.GetAttachmentById(id);
+
+            return View(model);
+        }
+
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -91,6 +100,24 @@ namespace BugTracker.WebMVC.Controllers
                 return RedirectToAction($"../Ticket/Details/{model.TicketId}");
             
         }
+
+        [HttpPost]
+        [ActionName("AdminDelete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult AdminDeletePost(int id)
+        {
+            var service = CreateAttachmentService();
+
+            var model = service.GetAttachmentById(id);
+
+            service.AdminDeleteAttachment(id);
+
+            TempData["SaveResult"] = "Your Attachment was deleted.";
+
+            return RedirectToAction($"../Ticket/Details/{model.TicketId}");
+
+        }
+
 
     }
 }

@@ -85,17 +85,24 @@
 
                             @if (item.UserIsAdmin)
                             {
-                                <li><a href='@string.Format("https://localhost:44337/Ticket/Edit/{0}", item.Id)'><span class="glyphicon glyphicon-pencil" aria-hidden="true" title="Edit"></span></a></li>
+                                <li title="Edit">@Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "glyphicon glyphicon-pencil" })</li>
+                                @* <li><a href='@string.Format("https://localhost:44337/Ticket/Edit/{0}", item.Id)'><span class="glyphicon glyphicon-pencil" aria-hidden="true" title="Edit"></span></a></li>*@
                             }
                             else
                             {
-                                <li><a href='@string.Format("https://localhost:44337/Ticket/UserEdit/{0}", item.Id)'><span class="glyphicon glyphicon-pencil" aria-hidden="true" title="Edit"></span></a></li>
+                                <li title="Edit">@Html.ActionLink(" ", "UserEdit", new { id = item.Id }, new { @class = "glyphicon glyphicon-pencil" })</li>
+
+                                @*<li><a href='@string.Format("https://localhost:44337/Ticket/UserEdit/{0}", item.Id)'><span class="glyphicon glyphicon-pencil" aria-hidden="true" title="Edit"></span></a></li>*@
                             }
-                            <li><a href='@string.Format("https://localhost:44337/Ticket/Details/{0}", item.Id)'><span class="glyphicon glyphicon-list" aria-hidden="true" title="Details"></span></a></li>
+                            <li title="Details">@Html.ActionLink(" ", "Details", new { id = item.Id }, new { @class = "glyphicon glyphicon-list" })</li>
+
+                            @*<li><a href='@string.Format("https://localhost:44337/Ticket/Details/{0}", item.Id)'><span class="glyphicon glyphicon-list" aria-hidden="true" title="Details"></span></a></li>*@
                             <li role="separator" class="divider"></li>
                             @if (item.UserIsAdmin)
                             {
-                                <li><a href='@string.Format("https://localhost:44337/Ticket/Delete/{0}", item.Id)'><span class="glyphicon glyphicon-trash" aria-hidden="true" title="Delete"></span></a></li>
+                                <li title="Delete">@Html.ActionLink(" ", "Delete", new { id = item.Id }, new { @class = "glyphicon glyphicon-trash" })</li>
+
+                               @* <li><a href='@string.Format("https://localhost:44337/Ticket/Delete/{0}", item.Id)'><span class="glyphicon glyphicon-trash" aria-hidden="true" title="Delete"></span></a></li>*@
                             }
 
                         </ul>
@@ -133,17 +140,19 @@
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                             @if (item.UserIsAdmin)
                             {
-                                <li><a href='@string.Format("https://localhost:44337/Ticket/Edit/{0}", item.Id)'><span class="glyphicon glyphicon-pencil" aria-hidden="true" title="Edit"></span></a></li>
+                                <li title="Edit">@Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "glyphicon glyphicon-pencil" })</li>
                             }
                             else
                             {
-                                <li><a href='@string.Format("https://localhost:44337/Ticket/UserEdit/{0}", item.Id)'><span class="glyphicon glyphicon-pencil" aria-hidden="true" title="Edit"></span></a></li>
+                                <li title="Edit">@Html.ActionLink(" ", "UserEdit", new { id = item.Id }, new { @class = "glyphicon glyphicon-pencil" })</li>
                             }
-                            <li><a href='@string.Format("https://localhost:44337/Ticket/Details/{0}", item.Id)'><span class="glyphicon glyphicon-list" aria-hidden="true" title="Details"></span></a></li>
+
+                            <li title="Details">@Html.ActionLink(" ", "Details", new { id = item.Id }, new { @class = "glyphicon glyphicon-list" })</li>
+
                             <li role="separator" class="divider"></li>
                             @if (item.UserIsAdmin)
                             {
-                                <li><a href='@string.Format("https://localhost:44337/Ticket/Delete/{0}", item.Id)'><span class="glyphicon glyphicon-trash" aria-hidden="true" title="Delete"></span></a></li>
+                                <li title="Delete">@Html.ActionLink(" ", "Delete", new { id = item.Id }, new { @class = "glyphicon glyphicon-trash" })</li>
                             }
 
                         </ul>
@@ -180,17 +189,19 @@
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                             @if (item.UserIsAdmin)
                             {
-                                <li><a href='@string.Format("https://localhost:44337/Ticket/Edit/{0}", item.Id)'><span class="glyphicon glyphicon-pencil" aria-hidden="true" title="Edit"></span></a></li>
+                                <li title="Edit">@Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "glyphicon glyphicon-pencil" })</li>
                             }
                             else
                             {
-                                <li><a href='@string.Format("https://localhost:44337/Ticket/UserEdit/{0}", item.Id)'><span class="glyphicon glyphicon-pencil" aria-hidden="true" title="Edit"></span></a></li>
+                                <li title="Edit">@Html.ActionLink(" ", "UserEdit", new { id = item.Id }, new { @class = "glyphicon glyphicon-pencil" })</li>
                             }
-                            <li><a href='@string.Format("https://localhost:44337/Ticket/Details/{0}", item.Id)'><span class="glyphicon glyphicon-list" aria-hidden="true" title="Details"></span></a></li>
+
+                            <li title="Details">@Html.ActionLink(" ", "Details", new { id = item.Id }, new { @class = "glyphicon glyphicon-list" })</li>
+
                             <li role="separator" class="divider"></li>
                             @if (item.UserIsAdmin)
                             {
-                                <li><a href='@string.Format("https://localhost:44337/Ticket/Delete/{0}", item.Id)'><span class="glyphicon glyphicon-trash" aria-hidden="true" title="Delete"></span></a></li>
+                                <li title="Delete">@Html.ActionLink(" ", "Delete", new { id = item.Id }, new { @class = "glyphicon glyphicon-trash" })</li>
                             }
 
                         </ul>
@@ -226,17 +237,19 @@
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                             @if (item.UserIsAdmin)
                             {
-                                <li><a href='@string.Format("https://localhost:44337/Ticket/Edit/{0}", item.Id)'><span class="glyphicon glyphicon-pencil" aria-hidden="true" title="Edit"></span></a></li>
+                                <li title="Edit">@Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "glyphicon glyphicon-pencil" })</li>
                             }
                             else
                             {
-                                <li><a href='@string.Format("https://localhost:44337/Ticket/UserEdit/{0}", item.Id)'><span class="glyphicon glyphicon-pencil" aria-hidden="true" title="Edit"></span></a></li>
+                                <li title="Edit">@Html.ActionLink(" ", "UserEdit", new { id = item.Id }, new { @class = "glyphicon glyphicon-pencil" })</li>
                             }
-                            <li><a href='@string.Format("https://localhost:44337/Ticket/Details/{0}", item.Id)'><span class="glyphicon glyphicon-list" aria-hidden="true" title="Details"></span></a></li>
+
+                            <li title="Details">@Html.ActionLink(" ", "Details", new { id = item.Id }, new { @class = "glyphicon glyphicon-list" })</li>
+
                             <li role="separator" class="divider"></li>
                             @if (item.UserIsAdmin)
                             {
-                                <li><a href='@string.Format("https://localhost:44337/Ticket/Delete/{0}", item.Id)'><span class="glyphicon glyphicon-trash" aria-hidden="true" title="Delete"></span></a></li>
+                                <li title="Delete">@Html.ActionLink(" ", "Delete", new { id = item.Id }, new { @class = "glyphicon glyphicon-trash" })</li>
                             }
 
                         </ul>

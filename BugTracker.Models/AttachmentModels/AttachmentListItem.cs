@@ -18,5 +18,7 @@ namespace BugTracker.Models.AttachmentModels
 
         [Required]
         public string URL { get; set; }
+
+        public bool IsAdmin { get; set; }
     }
 }

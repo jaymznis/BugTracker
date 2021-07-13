@@ -1,11 +1,12 @@
 ﻿@model BugTracker.Models.AttachmentModels.AttachmentDetails
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "AdminDelete";
 }
 
-<h2>Details</h2>
+<h2>AdminDelete</h2>
 
+<h3>Are you sure you want to delete this?</h3>
 <div>
     <h4>AttachmentDetails</h4>
     <hr />
@@ -15,8 +16,8 @@
         </dt>
 
         <dd>
-            <div class="well col-lg-6"><p class="text-truncate">@Html.DisplayFor(model => model.URL)</p></div>
-</dd>
+            <div class="well col-lg-6"><p class="text-truncate">  @Html.DisplayFor(model => model.URL)</p></div>
+        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.Attachedby)
@@ -42,9 +43,24 @@
             @Html.DisplayFor(model => model.TicketId)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.IsAdmin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsAdmin)
+        </dd>
+
     </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            @Html.ActionLink("Back to Ticket", "../Ticket/Details", new { id = Model.TicketId }) |
+            @Html.ActionLink("Back to Tickets", "../Ticket/Index")
+        </div>
+    }
 </div>
-<p>
-    @Html.ActionLink("Back to Ticket", "../Ticket/Details", new { id = Model.TicketId }) |
-    @Html.ActionLink("Tickets", "../Ticket/Index")
-</p>

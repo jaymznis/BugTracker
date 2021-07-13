@@ -43,6 +43,7 @@ namespace BugTracker.Services
         }
         public IEnumerable<AttachmentListItem> GetAttachmentsByTicketId(int id)
         {
+            bool isAdmin = UserIsAdmin(_userId.ToString());
             using (var ctx = new ApplicationDbContext())
             {
                 var query =
@@ -56,7 +57,8 @@ namespace BugTracker.Services
                             Id = e.Id,
                             URL = e.URL,
                             TicketId = e.TicketId,
-                            TicketName = e.Ticket.Name
+                            TicketName = e.Ticket.Name,
+                            IsAdmin = isAdmin
                         });
                 return query.ToArray();
 
@@ -64,6 +66,7 @@ namespace BugTracker.Services
         }
         public AttachmentDetails GetAttachmentById(int id)
         {
+            bool isAdmin = UserIsAdmin(_userId.ToString());
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
@@ -78,6 +81,7 @@ namespace BugTracker.Services
                         Attachedby = entity.Attachedby,
                         CreatedUtc = entity.CreatedUtc,
                         TicketId = entity.TicketId,
+                        IsAdmin = isAdmin,
                         Ticket = new TicketListItem
                         {
                            Name = entity.Ticket.Name
