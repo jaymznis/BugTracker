@@ -23,21 +23,34 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            <div class="hidden-xs"> @Html.DisplayNameFor(model => model.Name) <span class="glyphicon glyphicon-tag" aria-hidden="true"></span></div>
+            <div class="hidden-lg hidden-md hidden-sm"> <span class="glyphicon glyphicon-tag" aria-hidden="true"></span></div>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CreatedUtc)
+            <div class="hidden-xs"> @Html.DisplayNameFor(model => model.CreatedUtc) <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></div>
+            <div class="hidden-lg hidden-md hidden-sm"> <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></div>
+
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CreatedBy)
+            <div class="hidden-xs"> @Html.DisplayNameFor(model => model.CreatedBy) <span class="glyphicon glyphicon-user" aria-hidden="true"></span></div>
+            <div class="hidden-lg hidden-md hidden-sm"> <span class="glyphicon glyphicon-user" aria-hidden="true"></span></div>
+
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.BeingAddressed)
+            <div class="hidden-xs hidden-sm"> @Html.DisplayNameFor(model => model.BeingAddressed) <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></div>
+            <div class="hidden-lg hidden-md"> <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></div>
+
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Completed)
+            <div class="hidden-xs hidden-sm"> @Html.DisplayNameFor(model => model.Completed) <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span></div>
+            <div class="hidden-lg hidden-md"> <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span></div>
+
         </th>
-        <th></th>
+        <th>
+            <div class="hidden-xs"> Options  <span class="glyphicon glyphicon-list" aria-hidden="true"></span></div>
+            <div class="hidden-lg hidden-md hidden-sm"> <span class="glyphicon glyphicon-list" aria-hidden="true"></span></div>
+
+        </th>
     </tr>
 
     @foreach (var item in Model)
@@ -185,7 +198,6 @@
                 </td>
             </tr>
         }
-
         if (item.BeingAddressed && item.Completed)
         {
             <tr class="success">

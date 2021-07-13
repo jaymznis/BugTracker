@@ -14,15 +14,17 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.TicketId)
+            @Html.DisplayNameFor(model => model.TicketId) <span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TicketName)
+            @Html.DisplayNameFor(model => model.TicketName) <span class="glyphicon glyphicon-tag" aria-hidden="true"></span>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.URL)
+            @Html.DisplayNameFor(model => model.URL) <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
         </th>
-        <th></th>
+        <th>
+            Options  <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+        </th>
     </tr>
 
     @foreach (var item in Model)
@@ -45,4 +47,4 @@
     }
 
 </table>
-
+}

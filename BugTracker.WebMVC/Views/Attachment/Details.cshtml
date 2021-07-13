@@ -45,5 +45,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Back to Tickets", "../Ticket/Index")
+    @Html.ActionLink("Back to Ticket", "../Ticket/Details", new { id = Model.TicketId }) |
+    @Html.ActionLink("All Tickets", "../Ticket/Index")
 </p>
