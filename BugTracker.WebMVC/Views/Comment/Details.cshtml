@@ -11,11 +11,11 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Content)
+            @Html.DisplayNameFor(model => model.Content):
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Content)
+            <div class="well col-lg-6"><p class="text-truncate">@Html.DisplayFor(model => model.Content)</p></div>
         </dd>
 
         <dt>
@@ -61,6 +61,8 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to Tickets", "../Ticket/Index")
+    @* @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |*@
+    @Html.ActionLink("Back to Ticket", "../Ticket/Details", new { id = Model.TicketId }) |
+
+    @Html.ActionLink("All Tickets", "../Ticket/Index")
 </p>

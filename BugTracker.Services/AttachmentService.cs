@@ -2,6 +2,8 @@
 using BugTracker.Data.Entities;
 using BugTracker.Models.AttachmentModels;
 using BugTracker.Models.TicketModels;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,6 +43,7 @@ namespace BugTracker.Services
         }
         public IEnumerable<AttachmentListItem> GetAttachmentsByTicketId(int id)
         {
+            bool isAdmin = UserIsAdmin(_userId.ToString());
             using (var ctx = new ApplicationDbContext())
             {
                 var query =
@@ -54,7 +57,8 @@ namespace BugTracker.Services
                             Id = e.Id,
                             URL = e.URL,
                             TicketId = e.TicketId,
-                            TicketName = e.Ticket.Name
+                            TicketName = e.Ticket.Name,
+                            IsAdmin = isAdmin
                         });
                 return query.ToArray();
 
@@ -62,6 +66,7 @@ namespace BugTracker.Services
         }
         public AttachmentDetails GetAttachmentById(int id)
         {
+            bool isAdmin = UserIsAdmin(_userId.ToString());
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
@@ -76,6 +81,7 @@ namespace BugTracker.Services
                         Attachedby = entity.Attachedby,
                         CreatedUtc = entity.CreatedUtc,
                         TicketId = entity.TicketId,
+                        IsAdmin = isAdmin,
                         Ticket = new TicketListItem
                         {
                            Name = entity.Ticket.Name
@@ -111,6 +117,23 @@ namespace BugTracker.Services
 
                 return ctx.SaveChanges() == 1;
             }
+        }
+        public bool UserIsAdmin(string userid)
+        {
+
+            ApplicationDbContext context = new ApplicationDbContext();
+            var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+
+            var roles = UserManager.GetRoles(userid);
+
+            if (roles.Contains("admin"))
+            {
+
+                return true;
+            }
+            return false;
+
+
         }
 
 

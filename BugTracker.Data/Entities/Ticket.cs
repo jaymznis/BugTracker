@@ -26,6 +26,10 @@ namespace BugTracker.Data.Entities
 
         public DateTimeOffset? CompletedUtc { get; set; }
 
+        public bool Complete { get; set; }
+
+        public string CompletedBy { get; set; }
+
         [Required]
         public Guid CreatorId { get; set; }
 

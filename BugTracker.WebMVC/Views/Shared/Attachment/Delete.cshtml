@@ -16,7 +16,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.URL)
+            <div class="well col-lg-6"><p class="text-truncate">@Html.DisplayFor(model => model.URL)</p></div>
         </dd>
 
         <dt>
@@ -48,9 +48,10 @@
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to Tickets", "../Ticket/Index")
-        </div>
+<div class="form-actions no-color">
+    <input type="submit" value="Delete" class="btn btn-danger" /> |
+    @Html.ActionLink("Back to Ticket", "../Ticket/Details", new { id = Model.TicketId }) |
+    @Html.ActionLink("Back to Tickets", "../Ticket/Index")
+</div>
     }
 </div>
