@@ -433,15 +433,15 @@ namespace BugTracker.WebMVC.Controllers
             var userService = new UserService();
             var users = userService.GetAllUsers();
 
-           /* using (var ctx = new ApplicationDbContext())
+          /*  using (var ctx = new ApplicationDbContext())
             {
                 ctx.Roles.Add(new IdentityRole()
                 {
                     Name = "admin"
                 });
                 ctx.SaveChanges();
-            }
-*/
+            }*/
+
             var userList = users.Select(u =>
             {
                 return new UserListItem()
@@ -491,11 +491,11 @@ namespace BugTracker.WebMVC.Controllers
             var UserRoles = UserManager.GetRoles(userId);
             bool UserIsAdmin = UserRoles.Any(r => r == "admin");
             // here to 498 block user edit unless admin
-           /* if (!currentRoles.Contains("admin"))
+            if (!currentRoles.Contains("admin"))
             {
                 ModelState.AddModelError("", "You do not have permissions.");
                 return View(model);
-            }*/
+            }
 
             if (!ModelState.IsValid) return View(model);
 
