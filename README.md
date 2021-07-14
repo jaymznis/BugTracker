@@ -1,11 +1,16 @@
 
 # Bug Tracker
 #### A new tool developed to create tickets for things to address
+<img src="bugtracker.jpg">
 
----
 
 ## Description
 
+This app currently has two user roles. A normal user can create tickets, comment on tickets, and add attachments to thier tickets.
+They can also only edit only things they created.
+An Admin user can see everyones tickets and perform crud functionality for everything.
+I hope to expand this in time and make it a more full functioned app. I want to add a notification system along with other user roles. I want to add an archive function. I also want to add a reply function and update the comment section. 
+It is a work in progress.
 
 ## Technologies used
 
