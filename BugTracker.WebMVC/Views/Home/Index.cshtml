@@ -5,7 +5,16 @@
 <div class="jumbotron">
     <h1>Bug Tracker</h1>
     <p class="lead">Have an issue, open a ticket and we will work on fixing it!</p>
-    <p><a href="https://localhost:44337/Ticket/Create" class="btn btn-info btn-lg">Create A Ticket &raquo;</a></p>
+    @* <p><a href="https://localhost:44337/Ticket/Create" class="btn btn-info btn-lg">Create A Ticket &raquo;</a></p>*@
+    @if (Request.IsAuthenticated)
+    {
+        @Html.ActionLink("Create A Ticket", "../Ticket/Create", null, new { @class = "btn btn-info btn-lg" })
+    }
+    else
+    {
+        @Html.ActionLink("Log in", "Login", "Account", null, new { @class = "btn btn-info btn-lg" })
+        
+    }
 </div>
 
 @*<div class="row">
